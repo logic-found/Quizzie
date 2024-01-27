@@ -41,6 +41,7 @@ const sendTokenandResponse = (statusCode, user, message, req, res) => {
     const options = {
         httpOnly: true,
         maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days
+        sameSite: "None",
     };
     const response = { name: user.name, email: user.email };
     res.status(statusCode)
