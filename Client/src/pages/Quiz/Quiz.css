@@ -1,0 +1,144 @@
+.q-bg{
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+}
+.q-container{
+    background-color: var(--bg-white);
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap:1em;
+    font-size: 1.5em;
+    padding: 1em;
+    box-sizing: border-box;
+    color : var(--text-dark);
+    overflow-x: hidden;
+    border-radius: 10px;
+}
+.q-first-section{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.q-timer{
+    color: var(--red);
+}
+.q-ques-section{
+    width: 100%;
+    font-size: 2em;
+    text-align: center;
+    height: fit-content;
+}
+
+.q-option-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:1.5em
+}
+.q-option-div{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.q-option{
+    height: 6em;    
+    width: 12em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-dim);
+    border-radius: 10px;
+    cursor: pointer;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap:0.5em;
+}
+.q-option-selected{
+    border : 3px solid var(--blue)
+}
+.q-option:hover{
+    box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.2);
+}
+.q-btn-section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.q-option-img{
+    width : 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.q-option-img-and-text{
+    width : 50%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.q-option-text{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+@media (max-width: 800px) {
+    .q-option{
+        width: 8em;
+    }
+}
+
+@media (max-width: 600px) {
+    .q-bg{
+        background-color: var(--bg-white);
+        align-items: start;
+    }
+
+    .q-container{
+        padding: 0.5em;
+        gap:1em;
+        font-size: 1.1em;
+    }
+    .q-ques-section{
+        font-size: 1.4em;
+    }
+    
+    .q-option-section{
+        gap:0em;
+    }
+    .q-option-div{
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .q-option{
+        height : 6em;
+        width: 95%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--bg-dim);
+        border-radius: 5px;
+        margin: 0.5em 0em;
+    }
+}

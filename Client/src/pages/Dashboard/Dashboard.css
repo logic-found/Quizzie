@@ -1,0 +1,113 @@
+.d-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-dim);
+    display: flex;
+}
+.d-main-content {
+    height: 100%;
+    width: 80%;
+    background-color: var(--bg-dim);
+    display: flex;
+    justify-content: center;
+}
+.d-main-content-inner{
+    height:fit-content;
+    width: fit-content;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 10vh;
+
+
+}
+.d-main-content-one {
+    width: 100%;
+    display: flex;
+    gap: 3vw;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+.d-main-content-heading {
+    font-size: 1.8em;
+    height: 5em;
+    width: 5em;
+    padding: 0.2em;
+    background-color: var(--bg-white);
+    height: 20vh;
+    width: 15vw;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+.d-h-one{
+ color :   var(--orange) 
+}
+.d-h-two{
+ color :  var(--green)  
+}
+.d-h-three{
+ color :   var(--blue) 
+}
+.d-main-content-two{
+    width : 100%;
+    display: flex;
+    flex-direction: column;
+    gap:4vh
+}
+.d-main-content-two-heading{
+    font-size: 1.8em;
+    color: var(--text-dark)
+}
+
+.d-main-content-two-data{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3vw;
+    height: 45vh;
+    width: 70vw;
+    overflow-y: auto;
+}
+
+
+
+
+.quizCard{
+    background-color: var(--bg-white);
+    border-radius: 5px;
+    height: 14vh;
+    width: 14vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap:0.5em;
+    padding: 0.2em;
+
+}
+.quizCard-content1{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.quizCard-one{
+    color: var(--text-dark);
+    font-size: 1.3em;
+}
+.quizCard-two{
+color: var(--orange);
+display: flex;
+align-items: center;
+gap:0.3vw
+}
+
+.quizCard-content2{
+    width: 100%;
+    font-size: 0.8em;
+    color : var(--green);
+}

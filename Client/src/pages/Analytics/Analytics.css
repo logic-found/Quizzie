@@ -1,0 +1,123 @@
+.a-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-dim);
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.a-main-content {
+    height: fit-content;
+    width: 80%;
+    background-color: var(--bg-dim);
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    padding: 2em;
+  }
+
+.a-main-content-title {
+    width: 100%;
+    text-align: center;
+    color: var(--blue);
+    font-size: 2.5em;
+    font-weight: 600;
+}
+.a-main-content-body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.a-table-row-icon{
+    display: flex;
+    gap:0.4em;
+    font-size: 20px;
+
+}
+.a-table-icon-edit{
+    color : var(--purple);
+    cursor: pointer;
+}
+.a-table-icon-delete{
+    color : var(--red);
+    cursor: pointer;
+}
+.a-table-icon-share{
+    color : var(--green);
+    cursor: pointer;
+}
+.a-table-analysis-link{
+    cursor: pointer;
+    text-decoration: underline;
+    color : var(text-dark)
+}
+
+
+  
+  
+
+/* ---------------- TABLE ---------------------- */
+
+  .a-table {
+    width: 90%;
+    border-collapse: collapse;
+    border-radius: 5px; /* Apply to the overall table */
+    
+  }
+  
+  .a-table th{
+    background-color: var(--blue);
+    
+  }
+  .a-table tbody tr:nth-child(even) {
+    background-color: var(--sky-blue);
+    
+  }
+  
+  .a-table th {
+    color: var(--bg-white);
+  }
+  
+  .a-table th,
+  .a-table td {
+    padding: 10px;
+    text-align: left;
+  }
+
+
+
+
+/* ------------------------ Delete dialog ------------------- */
+.dd-container{
+  position: absolute;
+  top: 30%;
+  left:35%;
+  background-color: var(--bg-white);
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 2vh;
+  padding: 1em;
+  height: 10em;
+  width: 25em;
+  border-radius: 10px;
+  text-align: center;
+}
+.dd-content{
+  font-size: 2em;
+  color : var(--text-dark);
+}
+.dd-btn-section{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.confirm{
+  background-color: var(--peach);
+  color : var(--bg-white)
+
+}
+  

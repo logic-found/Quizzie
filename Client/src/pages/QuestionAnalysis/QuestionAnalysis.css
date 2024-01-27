@@ -1,0 +1,83 @@
+.qa-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-dim);
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.qa-main-content {
+    height: fit-content;
+    width: 80%;
+    background-color: var(--bg-dim);
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.qa-main-content-top{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-around;
+}
+.qa-main-content-title {
+    width: 50%;
+    text-align: center;
+    flex:4;
+    color: var(--blue);
+    font-size: 2.5em;
+    font-weight: 600;
+}
+.qa-main-content-sider{
+    flex:1;
+    color : var(--red);
+    font-size: 1em;
+    
+}
+.qa-main-content-body{
+    width: 100%;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    gap:1.5em;
+}
+
+.qa-ques-card{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #D7D7D7;
+    
+}
+.qa-ques{
+    font-size: 1.5em;
+}
+.qa-sol{
+    display: flex;
+    gap: 0.5em;
+    justify-content: space-around;
+}
+.qa-card{
+    height: 6em;
+    width: 10em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:0.5em;
+    background-color: var(--bg-white);
+    border-radius: 10px;
+    padding: 0.5em;
+
+}
+.qa-card-title{
+    font-size: 1.8em;
+}
+.qa-card-title,
+.qa-card-body{
+    width: 100%;
+    text-align: center;
+}
