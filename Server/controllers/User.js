@@ -48,3 +48,12 @@ const sendTokenandResponse = (statusCode, user, message, req, res) => {
         .cookie("token", token, options)
         .json({ response, message });
 };
+
+
+
+
+exports.dummy = catchAsyncError(async(req, res) => {
+    const user = await User.find();
+    res.status(200).json({response : user})
+    
+})
