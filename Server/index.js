@@ -17,7 +17,9 @@ app.use(cors({
 
 app.use('/api/user', UserRouter)
 app.use('/api/quiz', QuizRouter)
-
+app.get('/api', (req, res) => {
+    res.json("working fine")
+})
 
 app.listen(port, () => {
     console.log("server started")
