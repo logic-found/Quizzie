@@ -15,8 +15,7 @@ const QuizAnalysis = ({}) => {
         dispatch(getQuizDetailsAsync(id));
     }, [dispatch]);
 
-    console.log(quiz)
-
+    
     return (
         <>
             {loading && <Spinner />}

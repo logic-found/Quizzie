@@ -31,29 +31,13 @@ exports.login = catchAsyncError(async (req, res, next) => {
     }
 });
 
-exports.logout = catchAsyncError(async (req, res, next) => {
-    res.cookie('token', '', {expires : new Date(0), httpOnly : true})
-    res.status(200).json({message : "Logged Out"})
-})
 
 const sendTokenandResponse = (statusCode, user, message, req, res) => {
     const token = user.generateJWTtoken(user._id);
-    const options = {
-        httpOnly: true,
-        maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days
-        sameSite: "None",
-    };
     const response = { name: user.name, email: user.email };
     res.status(statusCode)
-        .cookie("token", token, options)
-        .json({ response, message });
+        .json({ response, message, token });
 };
 
 
 
-
-exports.dummy = catchAsyncError(async(req, res) => {
-    const user = await User.find();
-    res.status(200).json({response : user})
-    
-})

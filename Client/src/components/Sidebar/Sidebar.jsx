@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import CreateQuiz from "../../pages/CreateQuiz/CreateQuiz";
-import {useDispatch, useSelector} from 'react-redux'
-import {logoutAsync, CLEAR_USER_LOGOUT} from '../../redux/user'
+import toast from "react-hot-toast";
+
+
 
 const Sidebar = () => {
-    const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {loading, success} = useSelector((state) => state.user.logout)
     const [showCreateQuiz, setShowCreateQuiz] = useState(false);
 
     const logoutHandler = () => {
-        dispatch(logoutAsync())
+        localStorage.removeItem('token')
+        toast.success('Logged Out')
+        navigate('/')
     }
 
-    useEffect(() => {
-        if(success){
-            navigate('/')
-            dispatch(CLEAR_USER_LOGOUT())
-        }
-    }, [success])
     return (
         <>
             <div className="sidebar">
@@ -39,7 +34,7 @@ const Sidebar = () => {
                         Create Quiz
                     </p>
                 </div>
-                <button className="sidebar-three"  disabled={loading} onClick={logoutHandler}>{loading? "Logging out": "Logout"}</button>
+                <button className="sidebar-three"  onClick={logoutHandler}>Logout</button>
             </div>
             <CreateQuiz
                 showCreateQuiz={showCreateQuiz}

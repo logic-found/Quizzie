@@ -11,16 +11,16 @@ const initialState = {
     login: {
         loading: false,
         success : false
-    },
-    logout : {
-        loading : false,
-        success : false
     }
 };
+
+const setToken = (token) => {
+    localStorage.setItem('token', token);
+}
 export const registerAsync = createAsyncThunk(
     "REGISTER",
     async ({ name, email, password }, thunkAPI) => {
-        try {
+        try {        
             const { data } = await axios.post(
                 `${import.meta.env.VITE_APP_SERVER_URL}/user/register`,
                 { name, email, password },
@@ -48,21 +48,9 @@ export const loginAsync = createAsyncThunk(
         }
     }
 );
-export const logoutAsync = createAsyncThunk(
-    "LOGOUT",
-    async (_, thunkAPI) => {
-        try {
-            console.log('io')
-            const { data } = await axios.get(
-                `${import.meta.env.VITE_APP_SERVER_URL}/user/logout`,
-                { withCredentials: true }
-            );
-            return data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error);
-        }
-    }
-);
+
+
+
 
 const UserSlice = createSlice({
     name: "user",
@@ -86,6 +74,7 @@ const UserSlice = createSlice({
             .addCase(registerAsync.fulfilled, (state, action) => {
                 state.register.loading = false;
                 state.register.success = true;
+                setToken(action.payload.token)
                 toast.success(action.payload?.message);
             })
             .addCase(registerAsync.rejected, (state, action) => {
@@ -98,26 +87,15 @@ const UserSlice = createSlice({
             .addCase(loginAsync.fulfilled, (state, action) => {
                 state.login.loading = false;
                 state.login.success = true;
+                setToken(action.payload.token)
                 toast.success(action.payload?.message);
             })
             .addCase(loginAsync.rejected, (state, action) => {
                 state.login.loading = false;
                 ErrorHandler(action.payload);
             })
-            .addCase(logoutAsync.pending, (state) => {
-                state.logout.loading = true;
-            })
-            .addCase(logoutAsync.fulfilled, (state, action) => {
-                state.logout.loading = false;
-                state.logout.success = true;
-                toast.success(action.payload?.message);
-            })
-            .addCase(logoutAsync.rejected, (state, action) => {
-                state.logout.loading = false;
-                ErrorHandler(action.payload);
-            });
     },
 });
 
 export default UserSlice.reducer;
-export const {CLEAR_USER_LOGIN, CLEAR_USER_REGISTER, CLEAR_USER_LOGOUT} = UserSlice.actions
+export const {CLEAR_USER_LOGIN, CLEAR_USER_REGISTER} = UserSlice.actions

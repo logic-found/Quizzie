@@ -4,48 +4,58 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import queryString from "query-string";
 
-
-
-
-
 const initialState = {
     quizCreate: {
         loading: false,
-        success : false,
-        quizId : null
+        success: false,
+        quizId: null,
     },
-    quizList : {
-        loading : false,
-        quizs : null,
-        quizCount : null
+    quizList: {
+        loading: false,
+        quizs: null,
+        quizCount: null,
     },
-    quizDetails : {
-        loading : false,
-        quiz : null
+    quizDetails: {
+        loading: false,
+        quiz: null,
     },
-    getQuiz : {
-        loading : false,
-        quiz : null
+    getQuiz: {
+        loading: false,
+        quiz: null,
     },
-    quizDelete : {
-        loading : false,
-        success : false
+    quizDelete: {
+        loading: false,
+        success: false,
     },
-    quizEdit : {
-        loading : false,
+    quizEdit: {
+        loading: false,
     },
-    quesAttempt : {
-        loading : false,
+    quesAttempt: {
+        loading: false,
     },
 };
+
+const setToken = (token) => {
+    localStorage.setItem("token", token);
+};
+const getToken = () => {
+    return localStorage.getItem("token");
+};
+
 export const createQuizAsync = createAsyncThunk(
     "QUIZ_CREATE",
-    async ({name, type, questions, timer }, thunkAPI) => {
+    async ({ name, type, questions, timer }, thunkAPI) => {
         try {
+            const token = getToken();
             const { data } = await axios.post(
                 `${import.meta.env.VITE_APP_SERVER_URL}/quiz/new`,
-                { name, type, questions, timer  },
-                { withCredentials: true }
+                { name, type, questions, timer },
+                {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
             return data;
         } catch (error) {
@@ -54,18 +64,25 @@ export const createQuizAsync = createAsyncThunk(
     }
 );
 
-
 export const getQuizListAsync = createAsyncThunk(
     "QUIZ_LIST",
-    async ({sortBy, order}, thunkAPI) => {
+    async ({ sortBy, order }, thunkAPI) => {
         try {
-            const query = {}
-            if(sortBy && order){
-                query.sortBy = sortBy
-                query.order = order
+            const token = getToken();
+            const query = {};
+            if (sortBy && order) {
+                query.sortBy = sortBy;
+                query.order = order;
             }
-            const { data } = await axios.get(`${import.meta.env.VITE_APP_SERVER_URL}/quiz/all?${queryString.stringify(query)}`,
-                { withCredentials: true }
+            const { data } = await axios.get(
+                `${import.meta.env.VITE_APP_SERVER_URL
+                }/quiz/all?${queryString.stringify(query)}`,
+                {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
             return data;
         } catch (error) {
@@ -77,9 +94,15 @@ export const getQuizDetailsAsync = createAsyncThunk(
     "QUIZ_DETAILS",
     async (id, thunkAPI) => {
         try {
+            const token = getToken();
             const { data } = await axios.get(
                 `${import.meta.env.VITE_APP_SERVER_URL}/quiz/details/${id}`,
-                { withCredentials: true }
+                {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
             return data;
         } catch (error) {
@@ -91,9 +114,15 @@ export const getQuizAsync = createAsyncThunk(
     "QUIZ_GET",
     async (id, thunkAPI) => {
         try {
+            const token = getToken();
             const { data } = await axios.get(
                 `${import.meta.env.VITE_APP_SERVER_URL}/quiz/${id}`,
-                { withCredentials: true }
+                {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
             return data;
         } catch (error) {
@@ -105,9 +134,15 @@ export const deleteQuizAsync = createAsyncThunk(
     "QUIZ_DELETE",
     async (id, thunkAPI) => {
         try {
+            const token = getToken();
             const { data } = await axios.delete(
                 `${import.meta.env.VITE_APP_SERVER_URL}/quiz/${id}`,
-                { withCredentials: true }
+                {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
             return data;
         } catch (error) {
@@ -117,12 +152,19 @@ export const deleteQuizAsync = createAsyncThunk(
 );
 export const updateQuesAttemptAsync = createAsyncThunk(
     "QUES_ATTEMPT_UPDATE",
-    async ({selectedOptions, id}, thunkAPI) => {
+    async ({ selectedOptions, id }, thunkAPI) => {
         try {
+            const token = getToken();
             const { data } = await axios.patch(
-                `${import.meta.env.VITE_APP_SERVER_URL}/quiz/attemptUpdate/${id}`,
-                {selectedOptions},
-                { withCredentials: true }
+                `${import.meta.env.VITE_APP_SERVER_URL
+                }/quiz/attemptUpdate/${id}`,
+                { selectedOptions },
+                {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
             return data;
         } catch (error) {
@@ -132,12 +174,18 @@ export const updateQuesAttemptAsync = createAsyncThunk(
 );
 export const editQuizAsync = createAsyncThunk(
     "QUIZ_UPDATE",
-    async ({questions, id}, thunkAPI) => {
+    async ({ questions, id }, thunkAPI) => {
         try {
+            const token = getToken();
             const { data } = await axios.patch(
                 `${import.meta.env.VITE_APP_SERVER_URL}/quiz/${id}`,
-                {questions},
-                { withCredentials: true }
+                { questions },
+                {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
             return data;
         } catch (error) {
@@ -149,14 +197,14 @@ export const editQuizAsync = createAsyncThunk(
 const QuizSlice = createSlice({
     name: "quiz",
     initialState,
-    reducers : {
-        CLEAR_QUIZ_DELETE : (state) => {
-            state.quizDelete.success = false
+    reducers: {
+        CLEAR_QUIZ_DELETE: (state) => {
+            state.quizDelete.success = false;
         },
-        CLEAR_QUIZ_CREATE : (state) => {
-            state.quizCreate.success = false
-            state.quizCreate.quizId = null
-        }
+        CLEAR_QUIZ_CREATE: (state) => {
+            state.quizCreate.success = false;
+            state.quizCreate.quizId = null;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -180,7 +228,6 @@ const QuizSlice = createSlice({
                 state.quizList.loading = false;
                 state.quizList.quizs = action.payload.response;
                 state.quizList.quizCount = action.payload.quizCount;
-
             })
             .addCase(getQuizListAsync.rejected, (state, action) => {
                 state.quizList.loading = false;
@@ -240,10 +287,10 @@ const QuizSlice = createSlice({
             })
             .addCase(editQuizAsync.rejected, (state, action) => {
                 state.quizEdit.loading = false;
-                ErrorHandler(action.payload)
-            })
+                ErrorHandler(action.payload);
+            });
     },
 });
 
 export default QuizSlice.reducer;
-export const {CLEAR_QUIZ_DELETE, CLEAR_QUIZ_CREATE} = QuizSlice.actions
+export const { CLEAR_QUIZ_DELETE, CLEAR_QUIZ_CREATE } = QuizSlice.actions;

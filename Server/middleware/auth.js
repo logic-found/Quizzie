@@ -3,7 +3,8 @@ const User = require('../schema/User')
 
 
 const auth = async (req, res, next) => {
-    const  { token } = req.cookies
+    const authorizationHeader = req.headers.authorization;
+    const token = authorizationHeader.split(' ')[1];
     if(!token){
         res.status(401).json({message : "Please login to access this resource"})
     }
