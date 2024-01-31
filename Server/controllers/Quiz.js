@@ -60,8 +60,12 @@ exports.updateQuiz = catchAsyncError(async(req, res) => {
     if(quiz){
         const updatedQuestions= quiz.questions.map((question, index) => {
             let changed = false
-            if(question.question != questions[index].question || question.correctOption != questions[index].correctOption){
+            if(question.question != questions[index].question){
                 question.question = questions[index].question
+                changed = true
+            }
+            else if (question.correctOption != questions[index].correctOption){
+                question.correctOption = questions[index].correctOption
                 changed = true
             }
             else {
@@ -81,7 +85,6 @@ exports.updateQuiz = catchAsyncError(async(req, res) => {
                 })
             }
             if(changed){
-                console.log('changed')
                 question.totalAttempt = 0
                 question.incorrectAttempt = 0
                 question.correctAttempt = 0
@@ -103,13 +106,14 @@ exports.updateQuiz = catchAsyncError(async(req, res) => {
 exports.updateQuesAttempt = catchAsyncError(async (req, res) => {
     const { selectedOptions } = req.body; // ques that was correctly attempted
     const id = req.params.id;
-    const quiz = await Quiz.findById(id);
+    const quiz = await Quiz.findById(id);     
+
     if (!quiz) res.status(404).json({ message: "Invalid Quiz ID" });
     else {
         if(quiz.type === "Q & A"){
             selectedOptions.map((option, index) => {
                 quiz.questions[index].totalAttempt += 1
-                if(!option) return
+                if(option=== null || option === undefined) return
                 if(option === quiz.questions[index]?.correctOption){
                     quiz.questions[index].correctAttempt += 1
                 }
@@ -119,8 +123,8 @@ exports.updateQuesAttempt = catchAsyncError(async (req, res) => {
             })
         }else{
             selectedOptions.map((option, index) => {
-                if(!option) return                              // represent that no option was choosen
-                quiz.questions[index].options[option].opted += 1    //incorrect
+                if(option === null || option === undefined) return                 // represent that no option was choosen
+                quiz.questions[index].options[option].opted += 1  
             })
         }
         const response = await quiz.save()

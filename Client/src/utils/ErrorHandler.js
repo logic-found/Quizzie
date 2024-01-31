@@ -9,11 +9,7 @@ const ErrorHandler = (error) => {
         window.dispatchEvent(popStateEvent);
     }
     if (error.message == "Network Error") {
-        toast.error(
-            "Network Error, Could not connect to server, please try again later."
-        );
-        //toast.error(error.message)
-       
+        toast.error("Network Errror!");
     } else{
         toast.error(error.response?.data?.message || "Internal Server Error");
     }
