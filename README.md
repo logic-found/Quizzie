@@ -8,9 +8,9 @@
 
 ### Create Quiz 
 <div style="display: flex; justify-content: space-between; gap:10px">
-    <img src="https://github.com/logic-found/Quizzie/assets/93260606/b44c48b8-62e1-4c2e-a172-74e50c675adb" alt="Image 1" width="250">
-    <img src="https://github.com/logic-found/Quizzie/assets/93260606/5decc588-0449-4953-ba00-a735ad3c506c" alt="Image 2" width="250">
-    <img src="https://github.com/logic-found/Quizzie/assets/93260606/0e217c8b-7891-4252-aeeb-165537441237" alt="Image 3" width="250">
+    <img src="https://github.com/logic-found/Quizzie/assets/93260606/b44c48b8-62e1-4c2e-a172-74e50c675adb" alt="Image 1" height="250" width="250">
+    <img src="https://github.com/logic-found/Quizzie/assets/93260606/5decc588-0449-4953-ba00-a735ad3c506c" alt="Image 2" height="250"  width="250">
+    <img src="https://github.com/logic-found/Quizzie/assets/93260606/0e217c8b-7891-4252-aeeb-165537441237" alt="Image 3" height="250" width="250">
 
 </div>
 
