@@ -1,4 +1,4 @@
-## Web Link : https://quizzie-kappa.vercel.app
+## Live App : <a href="https://quizzie-kappa.vercel.app" target="_blank">Link</a>
 
 ### Register 
 <img src="https://github.com/logic-found/Quizzie/assets/93260606/c6a9396c-5a01-4d09-a501-81e5ffd37dce" width="500"/>
