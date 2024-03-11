@@ -6,7 +6,7 @@ import { getQuizListAsync } from "../../redux/quiz";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "../../components/Spinner/Spinner";
 import ParseTimestamp from "../../utils/ParseTimestamp";
-
+import { useCustomHook } from "../../dummy/useCustomHook";
 
 
 const Dashboard = () => {
@@ -17,6 +17,12 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getQuizListAsync({sortBy : "impression", order : -1}));
     }, [dispatch]);
+
+    const dummyFun = async () => {
+        await useCustomHook()
+        console.log('hy2')
+    }
+    dummyFun()
 
     return (
         <>
